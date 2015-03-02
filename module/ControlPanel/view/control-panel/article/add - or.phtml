@@ -1,0 +1,13 @@
+<article>
+    <h2>Add article</h2>
+    <?php
+        $addArticleForm = $this->addArticleForm;
+        $addArticleForm->setAttribute('method', 'POST');
+        $addArticleForm->setAttribute('action', $this->url( ));
+        $addArticleForm->prepare( );
+
+        echo $this->form( )->openTag($addArticleForm);
+        echo $this->formCollection($addArticleForm);
+        echo $this->form( )->closeTag( );
+    ?>
+</article>

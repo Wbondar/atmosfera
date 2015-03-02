@@ -1,0 +1,19 @@
+<?php
+    $form = $this->editArticleCategoryForm;
+    $articleCategory = $this->articleCategory;
+    $this->headTitle($form->get('action')->getValue( ));
+    $form->prepare( );
+?>
+<article>
+<h1><?php echo $form->get('action')->getValue( ); ?>.</h1>
+    <?php if (isset($this->message) && !empty($this->message)): ?>
+        <p><?php echo $this->message; ?></p>
+    <?php endif; ?>
+    <form action='<?php echo $this->url('control-panel', array('controller' => 'category', 'action' => 'edit', 'id' => $articleCategory->getId( ))); ?>' method='POST'>
+        <fieldset>
+            <input type='hidden' name='id' value='<?php echo $articleCategory->getId( ); ?>' />
+            <input type='text' name='title' value='<?php echo $articleCategory->getTitle( ); ?>' />
+            <input type='submit' name='action' value='Edit article category' />
+        </fieldset>
+    </form>
+</article>

@@ -9,14 +9,17 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class ArticleCategoryMapperFactory
 implements FactoryInterface
 {
-	public function createService (ServiceLocatorInterface $serviceLocator)
+	public function createService 
+	(
+		ServiceLocatorInterface $serviceLocator
+	)
 	{
 		$name = 'Zend\Db\Adapter\Adapter';
 		if ($serviceLocator->has($name))
 		{
 			return new NativeArticleCategoryMapper($serviceLocator->get($name));
 		} else {
-			throw new Exception ("Cannot locate " . $name . ".");
+			throw new \Exception ("Cannot locate " . $name . ".");
 		}
 	}
 }

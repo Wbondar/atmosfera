@@ -12,8 +12,6 @@ interface ArticleMapper
 
 	public function getById ($articleId);
 
-	public function getByTitle ($articleTitle);
-
 	public function add ($args);
 
 	public function modify ($args);

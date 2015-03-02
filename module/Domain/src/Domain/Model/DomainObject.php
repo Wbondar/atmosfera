@@ -2,9 +2,10 @@
 
 namespace Domain\Model;
 
-//use Zend\Debug\Debug;
+use Zend\Stdlib\ArrayObject;
 
 abstract class DomainObject
+extends ArrayObject
 {
     protected $id;
 
@@ -12,12 +13,12 @@ abstract class DomainObject
     {
         foreach ($args as $key => $value)
         {
-            $key = lcfirst(ucwords(strtolower(trim((string)$key))));
+            $key = str_replace(' ', '', lcfirst(ucwords(strtolower(str_replace('_', ' ', trim((string)$key))))));
             if (property_exists($this, $key))
             {
-                $this->$key = (isset($value)) ? $value : null;
+                $this->$key = $value;
             } else {
-                //throw new \Exception ("Property " . $key . " does not exist.");
+                throw new \Exception ("Property " . $key . " does not exist.");
             }
         }
     }

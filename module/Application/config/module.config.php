@@ -14,49 +14,19 @@ return array(
         (
             'home' => array
             (
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'segment',
                 'options' => array
                 (
-                    'route'    => '/',
-                    'defaults' => array
+                    'route'    => '/[category/:id]'
+                    , 'constraints' => array
+                    (
+                        'id' => '[1-9]\d*'
+                    )
+                    , 'defaults' => array
                     (
                         'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
+                        'action'     => 'index'
                     ),
-                ),
-            )
-            , 'article' => array 
-            (
-                  'type'    => 'segment'
-                , 'options' => array
-                (
-                      'route'    => '/article/:id'
-                    , 'defaults' => array 
-                    (
-                          'controller' => 'Application\Controller\Index'
-                        , 'action'     => 'openArticle'
-                    )
-                    , 'constraints' => array 
-                    (
-                        'id' => '[1-9]\d*'
-                    )
-                )
-            )
-            , 'category' => array 
-            (
-                  'type'    => 'segment'
-                , 'options' => array
-                (
-                      'route'    => '/category/:id'
-                    , 'defaults' => array 
-                    (
-                          'controller' => 'Application\Controller\Index'
-                        , 'action'     => 'openCategory'
-                    )
-                    , 'constraints' => array 
-                    (
-                        'id' => '[1-9]\d*'
-                    )
                 )
             )
         ),
@@ -69,43 +39,48 @@ return array(
         , 'aliases' => array(
             'translator' => 'MvcTranslator',
         )
-    ),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
-            ),
-        ),
-    ),
-    'controllers' => array(
+    )
+    , 'controllers' => array(
         'factories' => array(
             'Application\Controller\Index' => 'Application\Factory\IndexControllerFactory'
         ),
-    ),
-    'view_manager' => array(
+    )
+    , 'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/application'      => __DIR__ . '/../view/layout/application.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
-    ),
+            'application' => __DIR__ . '/../view',
+        )
+        , 'layout' => 'layout/application'
+    )
     // Placeholder for console routes
-    'console' => array(
+    , 'console' => array(
         'router' => array(
             'routes' => array(
             ),
         ),
-    ),
+    )
+    , 'module_layouts' => array
+    (
+        'Application' => 'layout/application'
+    )
+    , 'asset_manager' => array 
+    (
+        'resolver_configs' => array 
+        (
+            'paths' => array 
+            (
+                'Application' => __DIR__ . '/../pulbic'
+            )
+        )
+    )
 );

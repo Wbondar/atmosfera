@@ -5,40 +5,20 @@ namespace ControlPanel\Form;
 use Zend\Form\Form;
 
 class AddMemberForm
-extends Form
+extends ControlPanelForm
 {
 	public function __construct ( )
 	{
-		$this->add
-		(
-			array 
-			(
-				  'type' => 'ControlPanel\Form\MemberFieldset'
-				, 'name' => 'member-fieldset'
-			)
-		)
-		;
+        parent::__construct( );
 
-        $this->add
-        (
-            array 
-            (
-                  'type' => 'password'
-                , 'name' => 'password_confirmation'
-                , 'options' => array 
-                (
-                    'label' => 'Repeat password:'
-                )
-            )
-        )
-        ;
+        $this->addFieldset(new MemberFieldset( ));
 
         $this->add
         (
             array 
             (
                   'type'  => 'submit'
-                , 'name'  => 'submit'
+                , 'name'  => 'action'
                 , 'attributes' => array 
                 (
                 	'value' => 'Add member'

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <title>Атмосфера - молодежное служение</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Igor Lesiv">
+        <meta name="keywords" content=""> 
+        <meta name="description" content="">
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <!-- SLIDER -->
+        <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.3/fotorama.css" rel="stylesheet">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.3/fotorama.js"></script>
+        <!-- END SLIDER -->
+    <script>
+    var blockHeight = 0;
+
+    $(document).ready(function(){
+        
+        blockHeight = $('.blockHeight').height();  
+        
+        if(blockHeight <= 50){
+            $('.linkClick').css({'display' : 'none'});
+            $('.textOfArticle').css({'height' : '100%'});
+        }    
+    });
+
+    function linkClick(item){
+        flag = item.getAttribute('show');
+        var textOfArticle = $(item).parent().find('.textOfArticle');
+        
+        if (flag == 0) {  
+            textOfArticle.animate({ height: blockHeight }, "1000", function(){
+                $(item).html("Скрыть");
+            });
+            item.setAttribute('show',1);
+        } 
+        else {
+            textOfArticle.animate({ height: "58px" }, "1000", function(){
+                $(item).html("Далее");
+            });
+            item.setAttribute('show',0);
+        }
+    }
+    </script>
+    <!--Preloader-->
+    <script>
+        $(window).on('load', function () {
+    var $preloader = $('#page-preloader'),
+        $spinner   = $preloader.find('.spinner');
+    $spinner.fadeOut();
+    $preloader.delay(350).fadeOut('slow');
+});
+    </script>
+    </head>
+    <body>
+        <div id="page-preloader"><span class="spinner"></span></div>
+        <!--Боковые панели-->
+        <aside class="snap-drawers">
+            <div class="snap-drawer snap-drawer-left">
+                <div>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Отзывы</a></li>
+                        <li><a href="#">Статьи</a></li>
+                        <li><a href="#">Встречи</a></li>
+                        <li><a href="#">Видео</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div id="content" class="snap-content">
+            <!--Шапка-->
+            <header id="toolbar">
+                <a href="#" id="open-left"></a>
+                <a href="#" id="open-right"></a>
+                <h1>атmо<span>сфера</span></h1>
+            </header>
+            <!--Контент-->
+            <!-- SLIDER -->
+            <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-snap-ignore="true" data-autoplay="true">
+              <img src="images/slider/1.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/2.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/3.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/4.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/5.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/6.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/7.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/8.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/9.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/10.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/11.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/12.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/13.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/14.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/15.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/16.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/17.jpg" data-caption="#atmosferastav" alt="#">
+              <img src="images/slider/18.jpg" data-caption="#atmosferastav" alt="#">
+            </div>
+            <!-- END SLIDER -->
+            <!-- ADAPTIVE BLOCKS -->
+            <div class="masonry">
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/2.jpg" height="472" width="1280" alt="some attribute">
+                    <h2>#вкадре #пирогова77 #atmosferastav </h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Сегодня, 15 февраля в 17 часов состоится первая встреча киноклуба! Ждем всех любителей хорошего кино. 
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/3.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Старт киноклуба «ВКАДРЕ»</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Друзья, рады сообщить о старте киноклуба «ВКАДРЕ»
+
+                            15 февраля (воскр.) в 17 часов состоится первая встреча, где вашему вниманию будет предложен отличный фильм: «Снова я», интересное обсуждение и вкусное угощение. Ждём тебя и твоих друзей! Подробности по телефону: +79034140350
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                   <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <div class="video-responsive">
+                        <iframe width="auto" height="auto" src="https://www.youtube.com/embed/1lWO6LcuHdU" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h2>Тут должно быть видео</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+             
+                <div class="item">
+                    <img src="images/posts/1.jpg" height="596" width="1280" alt="some attribute">
+                    <h2>Встреча #ATMOSFERASTAV для молодых и горячих</h2><br>
+                    <div class="textOfArticle">
+                        <div class="blockHeight">
+                        <span>
+                            Приходи в нашу добрую компанию, давай вместе посмотрим на жизнь шире, увидим новые горизонты. Сегодня вечером не пропусти шанс прикоснуться к небесам и зажечь свое сердце.<br>
+                            Ждем тебя 14 февраля в 18:00 по адресу: Пирогова, 77 
+                            <br>
+                            P.S. Приглашай друзей, репост приветствуется. И поверь это лучше, чем потратить этот вечер на то, что ты делаешь всегда... Открой для себя новое!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+                </div>
+            </div>
+            <!-- END ADAPTIVE BLOCKS -->
+        <!--Подвал-->
+        <footer>
+            <p>&copy; 2015 Атмосфера | Все права защищены.</p>
+        </footer>
+        </div>
+        <!-- DRAWERS -->
+        <script type="text/javascript" src="js/snap.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+        <script type="text/javascript">
+            var snapper = new Snap({
+                element: document.getElementById('content')
+            });
+        </script>
+        <!-- END DRAWERS -->
+    </body>
+</html>

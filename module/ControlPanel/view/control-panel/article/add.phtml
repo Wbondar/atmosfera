@@ -1,0 +1,36 @@
+<article>
+    <h2>Add article.</h2>
+    <?php if (isset($this->message) && !empty($this->message)): ?>
+        <p><?php echo $this->message; ?></p>
+    <?php endif; ?>
+    <form action='<?php echo $this->url('control-panel', array('controller' => 'article', 'action' => 'add')); ?>' method='POST' enctype="multipart/form-data">
+        <fieldset>
+            <input type='hidden' name='author_id' value='<?php echo $_SESSION['member_id']; ?>' />
+            <label>Title:</label>
+            <input type='text' name='title' />
+            <label>Date for article to be published:</label>
+            <input type='text' name='published_at' placeholder='YYYY-MM-DD HH:MM:SS'/>
+            <label>Category:</label>
+            <select name='category_id'>
+                <?php
+                    $this->articleCategories = $this->articleCategoryService->getAll( );
+                    foreach ($this->articleCategories as $articleCategory)
+                    {
+                        echo "<option value='" . $articleCategory->getId( ) . "'>" . $articleCategory->getTitle( ) . "</option>";
+                    }
+                ?>
+            </select> 
+        </fieldset>
+        <fieldset>
+            <label>Preview:</label>
+            <input type="file" name="preview"> 
+        </fieldset>
+        <fieldset> 
+            <label>Content:</label>
+            <textarea name='content' rows='30' cols='36'></textarea>
+        </fieldset>
+        <fieldset>
+            <input type='submit' name='action' value='Add article' />
+        </fieldset>
+    </form>
+</article>

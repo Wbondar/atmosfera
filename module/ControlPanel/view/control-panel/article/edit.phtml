@@ -1,0 +1,51 @@
+<?php
+    $form = $this->editArticleForm;
+    if (!isset($form) || empty($form))
+    {
+        die("Form is missing.");
+    }
+    $article = $this->article;
+    if (!isset($article) || empty($article))
+    {
+        die("Article is missing.");
+    }
+    $this->headTitle($form->get('action')->getValue( ));
+    $form->setAttribute('action', $this->url('control-panel', array('controller' => 'article', 'action' => 'edit', 'id' => $article->getId( ))));
+    $form->prepare( );
+?>
+<article>
+    <h1><?php echo $form->get('action')->getValue( ); ?>.</h1>
+    <?php if (isset($this->message) && !empty($this->message)): ?>
+        <p><?php echo $this->message; ?></p>
+    <?php endif; ?>
+    <form action='<?php echo $this->url('control-panel', array('controller' => 'article', 'action' => 'edit', 'id' => $article->getId( ) )); ?>' method='POST' enctype="multipart/form-data">
+        <fieldset>
+            <input type='hidden' name='id' value='<?php echo $article->getId( ); ?>' />
+            <input type='hidden' name='author_id' value='<?php echo $article->getAuthorId( ); ?>' />
+            <label>Title:</label>
+            <input type='text' name='title' value='<?php echo $article->getTitle( );?>'/>
+            <label>Date for article to be published:</label>
+            <input type='text' name='published_at' value='<?php echo $article->getDateOfPublication( ); ?>' />
+            <label>Category:</label>
+            <select name='category_id'>
+                <?php
+                    foreach ($this->articleCategories as $articleCategory):
+                ?>
+                    <option value='<?php echo $articleCategory->getId( ); ?>' <?php if ($articleCategory->getId( ) == $article->getCategoryId( )) {echo "selected";}?>><?php echo $articleCategory->getTitle( ); ?></option>
+                <?php endforeach; ?>
+            </select> 
+        </fieldset>
+        <fieldset>
+            <img src='data:image/png;base64,<?php echo base64_encode($article->getPreview( )); ?>' height="100" width="100" />
+            <label>Preview:</label>
+            <input type="file" name="preview"> 
+        </fieldset>
+        <fieldset> 
+            <label>Content:</label>
+            <textarea name='content' rows='30' cols='36'><?php echo $article->getContent( ); ?></textarea>
+        </fieldset>
+        <fieldset>
+            <input type='submit' name='action' value='Edit article' />
+        </fieldset>
+    </form>
+</article>

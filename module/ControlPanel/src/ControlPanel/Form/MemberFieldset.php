@@ -2,13 +2,15 @@
 
 namespace ControlPanel\Form;
 
-use Zend\Form\Fieldset
+use Zend\Form\Fieldset;
 
 class MemberFieldset
 extends Fieldset
 {
     public function __construct ( )
     {
+        parent::__construct( );
+        
         $this->add
         (
             array 
@@ -37,6 +39,34 @@ extends Fieldset
         (
             array 
             (
+                  'type' => 'text'
+                , 'name' => 'name_first'
+                , 'options' => array 
+                (
+                    'label' => 'First name:'
+                )
+            )
+        )
+        ;
+
+        $this->add
+        (
+            array 
+            (
+                  'type' => 'text'
+                , 'name' => 'name_last'
+                , 'options' => array 
+                (
+                    'label' => 'Last name:'
+                )
+            )
+        )
+        ;
+
+        $this->add
+        (
+            array 
+            (
                   'type' => 'password'
                 , 'name' => 'password'
                 , 'options' => array 
@@ -46,4 +76,19 @@ extends Fieldset
             )
         )
         ;
+
+        $this->add
+        (
+            array 
+            (
+                  'type' => 'password'
+                , 'name' => 'password_confirmation'
+                , 'options' => array 
+                (
+                    'label' => 'Repeat password:'
+                )
+            )
+        )
+        ;
+    }
 }

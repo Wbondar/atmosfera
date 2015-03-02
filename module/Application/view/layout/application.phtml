@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <title>Атмосфера - молодежное служение</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Igor Lesiv">
+        <meta name="keywords" content=""> 
+        <meta name="description" content="">
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link rel="stylesheet" href='/css/style.css'>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <!-- SLIDER -->
+        <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.3/fotorama.css" rel="stylesheet">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.3/fotorama.js"></script>
+        <!-- END SLIDER -->
+    <script>
+    var blockHeight = 0;
+
+    $(document).ready(function(){
+        
+        blockHeight = $('.blockHeight').height();  
+        
+        if(blockHeight <= 50){
+            $('.linkClick').css({'display' : 'none'});
+            $('.textOfArticle').css({'height' : '100%'});
+        }    
+    });
+
+    function linkClick(item){
+        flag = item.getAttribute('show');
+        var textOfArticle = $(item).parent().find('.textOfArticle');
+        
+        if (flag == 0) {  
+            textOfArticle.animate({ height: blockHeight }, "1000", function(){
+                $(item).html("Скрыть");
+            });
+            item.setAttribute('show',1);
+        } 
+        else {
+            textOfArticle.animate({ height: "58px" }, "1000", function(){
+                $(item).html("Далее");
+            });
+            item.setAttribute('show',0);
+        }
+    }
+    </script>
+    <!--Preloader-->
+    <script>
+        $(window).on('load', function () {
+    var $preloader = $('#page-preloader'),
+        $spinner   = $preloader.find('.spinner');
+    $spinner.fadeOut();
+    $preloader.delay(350).fadeOut('slow');
+    });
+    </script>
+    </head>
+    <body>
+        <?php
+            echo $this->content;
+        ?>
+        <!--Подвал-->
+        <footer>
+            <p>&copy; 2015 Атмосфера | Все права защищены.</p>
+        </footer>
+        </div>
+        <!-- DRAWERS -->
+        <script type="text/javascript" src="js/snap.js"></script>
+        <script type="text/javascript" src="js/demo.js"></script>
+        <script type="text/javascript">
+            var snapper = new Snap({
+                element: document.getElementById('content')
+            });
+        </script>
+        <!-- END DRAWERS -->
+    </body>
+</html>

@@ -2,19 +2,33 @@
 
 namespace ControlPanel\Form;
 
-use Zend\Form\Fieldset
+use Zend\Form\Fieldset;
 
-class MemberFieldset
+use Zend\Form\Element;
+
+class ArticleFieldset
 extends Fieldset
 {
     public function __construct ( )
     {
+        parent::__construct( );
+
         $this->add
         (
             array 
             (
                   'type' => 'hidden'
                 , 'name' => 'id'
+            )
+        )
+        ;
+
+        $this->add
+        (
+            array 
+            (
+                  'type' => 'hidden'
+                , 'name' => 'author_id'
             )
         )
         ;
@@ -34,7 +48,7 @@ extends Fieldset
             array 
             (
                   'type' => 'text'
-                , 'name' => 'published'
+                , 'name' => 'published_at'
                 , 'options' => array 
                 (
                     'label' => 'Date to be published:'
@@ -57,6 +71,11 @@ extends Fieldset
         )
         ;
 
+        $file = new Element\File('preview');
+        $file->setLabel('Static preview:')
+             ->setAttribute('id', 'preview');
+        $this->add($file);
+
         $this->add
         (
             array 
@@ -70,4 +89,5 @@ extends Fieldset
             )
         )
         ;
+    }
 }

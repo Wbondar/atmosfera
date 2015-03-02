@@ -2,21 +2,24 @@
 
 namespace Domain\Factory;
 
-use Domain\Service\NativeArticleCategoryService;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Domain\Service\NativeArticleCategoryService;
 
 class ArticleCategoryServiceFactory
 implements FactoryInterface
 {
-	public function createService (ServiceLocatorInterface $serviceLocator)
+	public function createService 
+	(
+		ServiceLocatorInterface $serviceLocator
+	)
 	{
 		$name = 'Domain\Mapper\ArticleCategoryMapper';
 		if ($serviceLocator->has($name)) 
 		{
 			return new NativeArticleCategoryService($serviceLocator->get($name));
 		} else {
-			throw new Exception ('Cannot locate ' . $name . ".");
+			throw new \Exception ('Failed to locate ' . $name . ".");
 		}
 	}
 }

@@ -7,7 +7,6 @@ extends DomainObject
 implements ArticleCategory
 {
     protected $title;
-    protected $parent;
 
     public function __construct ($args)
     {
@@ -17,10 +16,5 @@ implements ArticleCategory
     public function getTitle ( )
     {
         return $this->title;
-    }
-
-    public function getParent ( )
-    {
-    	return $this->parent;
     }
 }

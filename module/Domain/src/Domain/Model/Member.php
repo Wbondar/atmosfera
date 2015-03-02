@@ -6,5 +6,7 @@ interface Member
 {
 	public function getUsername ( );
 
-	public function getPasswordHash ( );
+	public function getNameFirst ( );
+
+	public function getNameLast ( );
 }

@@ -3,7 +3,8 @@
 namespace ControlPanel\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
-use Zend\SerivceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+
 use ControlPanel\Controller\ArticleCategoryController;
 
 class ArticleCategoryControllerFactory
@@ -18,17 +19,33 @@ implements FactoryInterface
         {
             $articleCategoryService = $serviceLocator->get($name);
         } else {
-            throw new Exception ("Unable to locate " . $name . ".");
+            throw new \Exception ("Failed to locate " . $name . ".");
         }
         
-        $name = "ControlPanel\Form\ArticleCategoryForm";
-        if ($serviceLocator->has('FormElementManager')->has($name))
+        $name = "ControlPanel\Form\AddArticleCategoryForm";
+        if ($serviceLocator->get('FormElementManager')->has($name))
         {
-            $articleCategoryForm = $serviceLocator->get('FormElementManager')->get($name);
+            $addArticleCategoryForm = $serviceLocator->get('FormElementManager')->get($name);
         } else {
-            throw new Exception ("Unable to locate " . $name . ".");
+            throw new \Exception ("Failed to locate " . $name . ".");
+        }
+        
+        $name = "ControlPanel\Form\EditArticleCategoryForm";
+        if ($serviceLocator->get('FormElementManager')->has($name))
+        {
+            $editArticleCategoryForm = $serviceLocator->get('FormElementManager')->get($name);
+        } else {
+            throw new \Exception ("Failed to locate " . $name . ".");
+        }
+        
+        $name = "ControlPanel\Form\RemoveArticleCategoryForm";
+        if ($serviceLocator->get('FormElementManager')->has($name))
+        {
+            $removeArticleCategoryForm = $serviceLocator->get('FormElementManager')->get($name);
+        } else {
+            throw new \Exception ("Failed to locate " . $name . ".");
         }
 
-        return new ArticleCategoryController ($articleCategoryService, $articleCategoryForm);
+        return new ArticleCategoryController ($articleCategoryService, $addArticleCategoryForm, $editArticleCategoryForm, $removeArticleCategoryForm);
     }
 }

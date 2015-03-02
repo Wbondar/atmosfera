@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+    <header>
+        <nav>
+            <?php if (isset($_SESSION['member_id']) && !empty($_SESSION['member_id'])): ?>
+                <a href='<?php echo $this->url("control-panel", array('controller'=>'index', 'action'=>'index')); ?>'>Home</a>
+                <a href='<?php echo $this->url("control-panel", array('controller'=>'article', 'action'=>'add')); ?>'>New article</a>
+                <a href='<?php echo $this->url("control-panel", array('controller'=>'category', 'action'=>'add')); ?>'>New category</a>
+                <a href='<?php echo $this->url("control-panel", array('controller'=>'member', 'action'=>'add')); ?>'>New member</a>
+                <a href='<?php echo $this->url("control-panel", array('controller'=>'index', 'action'=>'exit')); ?>'>Exit</a>
+            <?php endif; ?>
+        </nav>
+    </header>
+    <main>
+        <?php
+            echo $this->content;
+        ?>
+    </main>
+    <footer>
+    </footer>
+</body>
+<script>
+(function( )
+{
+    console.log("You have entered a control panel.");
+})( );
+</script>

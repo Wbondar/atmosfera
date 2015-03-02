@@ -2,6 +2,7 @@
 
 namespace Domain\Mapper;
 
+use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\Adapter\AdapterInterface;
 
 class NativeArticleCategoryMapper
@@ -13,24 +14,81 @@ implements ArticleCategoryMapper
         parent::__construct($dbAdapter);
     }
 
-    public function getChildren ($articleCategoryId)
+    public function getAll ( )
     {
-        $result = $this->dbAdapter->query("SELECT id, title, parent_id FROM article_category AS db WHERE db.parent_id = ?;")->execute(array($articleCategoryId));
-        foreach ($result as $row)
+        $resultSet = new ResultSet( );
+        try
         {
-            array_push($result, this.getChildren($row['id']));
+            $result = $this->dbAdapter->query("SELECT id, title FROM article_category;")->execute( );
+            $resultSet->initialize($result);
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to fetch all article categories: " . $e->getMessage( ));
         }
-
-        return $result;
+        return $resultSet;
     }
 
     public function getById ($articleCategoryId)
     {
-        throw new Exception ("This function is yet to be implemented.");
+        $resultSet = new ResultSet( );
+        try 
+        {
+            $result = $this->dbAdapter->query("SELECT id, title FROM article_category WHERE article_category.id = ? LIMIT 1;")->execute(array($articleCategoryId));
+            $resultSet->initialize($result);
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to fetch article category by id: " . $e->getMessage( ));
+        }
+        return $resultSet;
     }
 
     public function getByTitle ($articleCategoryTitle)
     {
-        throw new Exception ("This funciton is yet to be implemented.");
+        $resultSet = new ResultSet( );
+        try
+        {
+            $result = $this->dbAdapter->query("SELECT id, title FROM article_category WHERE UPPER(article_category.title) = UPPER(?) LIMIT 1;")->execute(array($articleCategoryTitle));
+            $resultSet->initialize($result);
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to fetch article category by title: " . $e->getMessage( ));
+        }
+        return $resultSet;
+    }
+
+    public function add ($args)
+    {
+        $resultSet = new ResultSet( );
+        try
+        {
+            $this->dbAdapter->query("INSERT INTO article_category (title) VALUES (?);")->execute(array($args['title']));
+            $result = $this->dbAdapter->query("SELECT LAST_INSERT_ID( ) AS id;")->execute( );
+            $resultSet->initialize($result);
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to insert article category to the database: " . $e->getMessage( ));
+        }
+        return $resultSet;
+    }
+
+    public function modify ($args)
+    {
+        $resultSet = new ResultSet( );
+        try
+        {
+            $result = $this->dbAdapter->query("UPDATE article_category SET title = :title WHERE id = :id LIMIT 1;")->execute($args);
+            $resultSet->initialize($result);
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to modify article category: " . $e->getMessage( ));
+        }
+        return $resultSet;
+    }
+
+    public function remove ($articleCategoryId)
+    {
+        $resultSet = new ResultSet( );
+        try
+        {
+            $result = $this->dbAdapter->query("DELETE article_category WHERE id = :id LIMIT 1;")->execute($args);
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to remove article category: " . $e->getMessage( ));
+        }
+        return $resultSet;
     }
 }

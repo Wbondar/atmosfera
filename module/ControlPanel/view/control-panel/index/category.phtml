@@ -1,0 +1,18 @@
+<article>
+    <section>
+        <h1>Table of articles under category:</h1>
+    </section>
+    <section>
+        <table>
+            <tr><td>#</td><td>Title</td><td>Actions</td></tr>
+            <?php foreach($this->articles as $article): ?>
+                <tr>
+                    <td><?php echo $article->getId( ); ?></td>
+                    <td><?php echo $article->getTitle( ); ?></td>
+                    <td><a href='<?php echo $this->url('control-panel', array('controller' => 'article', 'action' => 'edit', 'id' => $article->getId( )));?>'>(Edit)</a></td>
+                    <td><a href='<?php echo $this->url('control-panel', array('controller' => 'article', 'action' => 'remove', 'id' => $article->getId( )));?>'>(Remove)</a></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </section>
+</article>

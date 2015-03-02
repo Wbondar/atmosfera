@@ -1,9 +1,18 @@
-<h2>Authorization</h2>
-<p>Unauthorized access is forbidden. Violators shall be punished according to the law.</p>
-<form name='authorization' action='' method='POST'>
-	<label>Username</label>
-	<input type='text'     name='username'>
-	<label>Password</label>
-	<input type='password' name='password'>
-	<input type='submit'   name='action'   value='Authorization'>
-</form>
+<?php
+$member    = $this->memberService->getById($_SESSION['member_id']);
+$nameFirst = $member->getNameFirst( );
+$nameLast  = $member->getNameLast( );
+?>
+<article>
+    <section>
+        <h1>Welcome, <?php echo $nameLast . " " . $nameFirst ?>!</h1>
+    </section>
+    <section>
+        <h2>List of article categories:</h2>
+        <ul>
+            <?php foreach($this->categories as $category): ?>
+                <li><a href='<?php echo $this->url('control-panel', array('controller' => 'index', 'action' => 'category', 'id' => $category->getId( )));?>'><?php echo $category->getTitle( ); ?></a></li>
+            <?php endforeach; ?>
+        <ul>
+    </section>
+</article>

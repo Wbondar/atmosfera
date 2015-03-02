@@ -8,13 +8,9 @@ interface MemberMapper
 {
     public function getById ($memberId);
 
-    public function authenticate ($username, $plainPassword);
+    public function authenticate ($username, $passwordHash);
 
-    public function grantPermission ($memberId, $permissionId);
-
-    public function revokePermission ($memberId, $permissionId);
-
-    public function add ($username, $palinPassword);
+    public function add ($args);
 
     public function remove ($memberId);
 }

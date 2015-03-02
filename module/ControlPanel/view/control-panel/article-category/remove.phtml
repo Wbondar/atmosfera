@@ -1,0 +1,18 @@
+<?php
+    $form = $this->removeArticleCategoryForm;
+    $articleCategory = $this->articleCategory;
+    $this->headTitle($form->get('action')->getValue( ));
+    $form->setAttribute('action', $this->url('control-panel', array ('controller' => 'category', 'action' => 'remove', 'id' => $articleCategory->getId( ))));
+    $form->prepare( );
+?>
+<article>
+<h1><?php echo $form->get('action')->getValue( ); ?>.</h1>
+<?php if (isset($this->message) && !empty($this->message)): ?>
+	<p><?php echo $this->message; ?></p>
+<?php endif; ?>
+<?php
+    echo $this->form( )->openTag($form);
+    echo $this->formCollection($form);
+    echo $this->form( )->closeTag( );
+?>
+</article>

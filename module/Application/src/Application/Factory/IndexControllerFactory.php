@@ -17,9 +17,19 @@ implements FactoryInterface
         $name = 'Domain\Service\ArticleService';
         if ($serviceLocator->has($name))
         {
-            return new IndexController($serviceLocator->get($name));
+            $articleService = $serviceLocator->get($name);    
         } else {
             throw new \Exception ("Failed to locate " . $name . ".");
         }
+
+        $name = 'Domain\Service\ArticleCategoryService';
+        if ($serviceLocator->has($name))
+        {
+            $articleCategoryService = $serviceLocator->get($name);    
+        } else {
+            throw new \Exception ("Failed to locate " . $name . ".");
+        }
+        
+        return new IndexController($articleService, $articleCategoryService);
     }
 }

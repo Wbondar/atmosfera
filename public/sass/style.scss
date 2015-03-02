@@ -1,0 +1,388 @@
+/*
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Project:  Atmosfera
+Version:  1.0
+Author: Igor Lesiv
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+/*
+Import
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+/*Font for logo*/
+@import "http://webfonts.ru/import/aaargh.css";
+@import "http://webfonts.ru/import/andika.css";
+/*CSS reset*/
+@import "css/reset.css";
+
+/*
+Colors
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+$headerCol: 						#1F2332;
+$blueCol: 							#40B1D0;
+$bodyBackCol: 						#F0F2F5;
+$drawersBackCol: 					#2E3243;
+$drawersMenuAHoverCol: 				#272938;
+$adaptiveBlockBackCol: 				#fff;
+$adaptiveBlockACol: 				#359CC6;
+$adaptiveBlockAHoverCol: 			#9F1D35;
+
+
+/*
+Functions
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+/*
+Header Style
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+html, body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.fotorama{
+  margin-top: 59px;
+}
+
+#toolbar {
+	background: $headerCol;
+	border-bottom: 4px solid $blueCol;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: auto;
+	height: 55px;
+	z-index: 1000;
+	
+		h1{
+			color: white;
+			font-size: 26px;
+			font-weight: inherit;
+			font-family: 'Aaargh';
+			line-height: 26px;
+			text-align: center;
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+			position: absolute;
+			top: 0;
+			right: 55px;
+			left: 55px;
+			width: auto;
+
+				span{
+					color: $blueCol;
+				}
+
+		}
+}
+
+#open-left {
+  background: url("../images/open.png") center center no-repeat;
+  display: block;
+  width: 55px;
+  height: 55px;
+  float: left;
+}
+
+#open-right {
+  background: url("../images/open.png") center center no-repeat;
+  display: block;
+  width: 55px;
+  height: 55px;
+  float: right;
+}
+
+/*
+Snap Drowers
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+.snap-content {
+   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0);
+     -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+       -o-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+#content {
+  background: $bodyBackCol url() center 75% no-repeat;
+}
+
+.snap-drawers {
+  @drowersPositionAbsolute;
+  background: $drawersBackCol;
+  width: auto;
+  height: auto;
+}
+
+.snap-drawer {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: auto;
+  width: 265px;
+  height: auto;
+  overflow: auto;
+  background: $drawersBackCol; 
+  padding-top: 55px;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: width 0.3s ease;
+     -moz-transition: width 0.3s ease;
+      -ms-transition: width 0.3s ease;
+       -o-transition: width 0.3s ease;
+          transition: width 0.3s ease;
+
+  	h4{
+  		padding: 15px;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		margin-bottom: 0;
+  	}
+
+  	h3{
+  		font-size: 36px;
+		font-weight: normal;
+		margin: 15px;
+  	}
+
+  	ul{
+  		padding: 0;
+		margin: 0;
+		list-style-type: none;
+
+			li{
+				a{
+					display: block;
+					border-bottom: 1px solid rgba(0,0,0, 0.1);
+					padding: 15px;
+					font-weight: bold;
+					text-shadow: 0 1px 0 #000;
+					text-decoration: none;
+					color: #ccc;
+					text-indent: 20px;
+
+					&:hover{
+						background-color: $drawersMenuAHoverCol;
+						border-left: 4px solid $blueCol;
+					}
+				}
+			}
+  	}
+}
+
+.snap-drawer-left {
+  left: 0;
+  z-index: 1;
+}
+
+.snap-drawer-right {
+  right: 0;
+  z-index: 1;
+}
+
+.snapjs-left .snap-drawer-right,
+.snapjs-right .snap-drawer-left {
+  display: none;
+}
+
+.snapjs-expand-left .snap-drawer-left,
+.snapjs-expand-right .snap-drawer-right {
+  width: 100%;
+}
+
+.snapjs-right .snap-drawer-left {
+  display: block;
+  right: 0;
+  left: auto;
+}
+
+.snapjs-right .snap-drawer-right {
+  display: none;
+}
+
+/*
+Adaptive Blocks
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+.masonry {
+    margin: 1.5em 0;
+    padding: 0;
+    column-gap: 1.5em;
+    font-size: .85em;
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+    width: 100%;
+}
+ 
+.item {
+  display: inline-block;
+    background: #fff;
+    padding: 1em;
+    margin: 0 0 1.5em;
+    width: 100%;
+    box-sizing: border-box; /* Изменения алгоритма расчета ширины и высоты элемента.*/
+    -moz-box-sizing: border-box; /* Для Firefox */ 
+    -webkit-box-sizing: border-box; /* Для Safari, Chrome, iOS иAndroid */ 
+    border-radius: 3px;
+
+    	.linkClick{
+  			margin: 5px 5px;
+        padding: 3px 4px 3px 4px;
+        background-color: $blueCol;
+        color: $adaptiveBlockBackCol;
+        float: right;
+        border-radius: 2px;
+        cursor: pointer;
+    	}
+
+      h2{
+        padding: 0;
+        margin: 0;
+        font-family: 'Andika';
+        font-size: 16px;
+        font-weight: inherit;
+        line-height: 16px;
+        color: $blueCol;
+        margin-top: 10px;
+      }
+}
+ 
+.textOfArticle{
+  margin-top: -10px;
+  width: 100%;
+  height: 58px;
+  overflow: hidden;
+
+    span{
+      font-family: Tahoma;
+      font-size: 1.1em;
+      line-height: 20px;
+      font-weight: inherit;
+    }
+}
+
+img, iframe {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+ 
+@media only screen and (min-width: 400px) {
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+ 
+@media only screen and (min-width: 700px) {
+    .masonry {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+ 
+@media only screen and (min-width: 900px) {
+    .masonry {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+}
+ 
+@media only screen and (min-width: 1100px) {
+    .masonry {
+        -moz-column-count: 5;
+        -webkit-column-count: 5;
+        column-count: 5;
+    }
+}
+ 
+@media only screen and (min-width: 1280px) {
+    .wrapper {
+        width: 1260px;
+    }
+}
+
+.video-responsive { 
+  position: relative; 
+  padding-bottom: 56.25%; 
+  height: 0; 
+  overflow:hidden; 
+} 
+.video-responsive iframe, 
+.video-responsive object, 
+.video-responsive embed {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  height: 100%;
+}
+
+/*
+Footer
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+footer{
+  background: $headerCol;
+  position: absolute;
+  clear: both;
+  width: 100%;
+  height: 50px;
+  z-index: 1000;
+  padding-top: 5px;
+
+    p{
+      margin-top: 15px;
+      text-align: center;
+      color: white;
+      font-size: 13px;
+    }
+}
+
+/*
+Preloader
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+
+#page-preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 100500;
+}
+
+#page-preloader .spinner {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: url('../images/spinner.gif') no-repeat 50% 50%;
+    margin: -16px 0 0 -16px;
+}

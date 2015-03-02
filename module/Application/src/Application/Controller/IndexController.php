@@ -3,6 +3,7 @@
 namespace Application\Controller;
 
 use Domain\Service\ArticleService;
+use Domain\Service\ArticleCategoryService;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -10,47 +11,40 @@ use Zend\View\Model\ViewModel;
 class IndexController 
 extends AbstractActionController
 {
-    protected $service;
+    protected $articleService;
+    protected $articleCategoryService;
 
-    public function __construct (ArticleService $service)
+    public function __construct 
+    (
+          ArticleService $articleService
+        , ArticleCategoryService $articleCategoryService
+    )
     {
-        $this->service = $service;  
+        $this->articleService         = $articleService;  
+        $this->articleCategoryService = $articleCategoryService;  
     }
 
     public function indexAction( )
     {
-        $this->service->getAllActual( );
-        return new ViewModel
-        (
-            array 
-            (
-                'articles' => $this->service->getAllActual( )       
-            )
-        )
-        ;
-    }
+        $categoryId = $this->params()->fromRoute('id');
+        if (isset($categoryId) && !empty($categoryId) && $categoryId > 0)
+        {
+            $articles = $this->articleService->getActualUnderCategory($categoryId);
+            if (empty($articles))
+            {
+                $message = "No articles were found.";
+            }
+        } else {
+            $articles = $this->articleService->getAllActual( ); 
+        }
 
-    public function openArticleAction ( )
-    {
-        $articleId = $this->params( )->fromRoute('id');
         return new ViewModel
         (
             array 
             (
-                'article' => $this->service->getById($articleId)
-            )
-        )
-        ;
-    }
-
-    public function openCategoryAction ( )
-    {
-        $categoryId = $this->params( )->fromRoute('id');
-        return new ViewModel
-        (
-            array 
-            (
-                'articles' => $this->service->getAllActualUnderCategory($categoryId)
+                  'articles'               => $articles  
+                , 'articleCategories'      => $this->articleCategoryService->getAll( ) 
+                , 'message'                => isset($message) ? $message : null
             )
         )
         ;

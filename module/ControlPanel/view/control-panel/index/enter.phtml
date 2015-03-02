@@ -1,0 +1,31 @@
+<?php
+    $authorizationForm = $this->authorizationForm;
+    if ($authorizationForm != null)
+    {
+        $this->headTitle("Authorization.");
+        $authorizationForm->setAttribute('action', $this->url("control-panel", array('controller'=>'index', 'action'=>'enter')));
+        $authorizationForm->setAttribute('method', 'POST');
+        $authorizationForm->prepare( );
+    } else {
+        throw new \Exception("Failed to load form.");
+    }
+?>
+<article>
+<p><?php echo $this->message; ?></p>
+<?php if (isset($authorizationForm) && !empty($authorizationForm)): ?>
+    <?php if (isset($_SESSION['member_id'])): ?>
+        <h2>Session termination.</h2>
+        <a href='<?php echo $this->url("/cpanel/index/exit"); ?>'>Exit</a>
+    <?php else: ?>
+        <h2>Authorization.</h2>
+        <p>Unauthorized access is forbidden. Violators shall be punished according to the law.</p>
+        <?php
+
+            echo $this->form( )->openTag($authorizationForm);
+            echo $this->formCollection($authorizationForm);
+            //echo $this->formSubmit($authorizationForm->get('action'));
+            echo $this->form( )->closeTag( );
+        ?>
+    <?php endif; ?>
+<?php endif; ?>
+</article>

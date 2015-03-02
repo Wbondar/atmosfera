@@ -1,19 +1,70 @@
-<?php
-foreach ($this->articles as $article)
-{
-?>
-<article>
-    <h2>
-    <?php
-        echo $article->getTitle( );
-    ?>
-    </h2>
-    <section>
-    <?php
-        echo $article->getContent( );
-    ?>
-    </section>
-</article>
-<?php
-}
-?>
+<div id="page-preloader"><span class="spinner"></span></div>
+<!--Боковые панели-->
+<aside class="snap-drawers">
+    <div class="snap-drawer snap-drawer-left">
+        <div>
+            <ul>
+                <?php foreach ($this->articleCategories as $articleCategory): ?>
+                    <li><a href="<?php echo $this->url('home', array('id' => $articleCategory->getId( )));?>"><?php echo $articleCategory->getTitle( ); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</aside>
+<div id="content" class="snap-content">
+    <!--Шапка-->
+    <header id="toolbar">
+        <a href="#" id="open-left"></a>
+        <a href="#" id="open-right"></a>
+        <h1>атmо<span>сфера</span></h1>
+    </header>
+    <!--Контент-->
+    <!-- SLIDER -->
+    <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-snap-ignore="true" data-autoplay="true">
+      <img src="/images/slider/1.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/2.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/3.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/4.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/5.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/6.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/7.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/8.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/9.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/10.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/11.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/12.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/13.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/14.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/15.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/16.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/17.jpg" data-caption="#atmosferastav" alt="#">
+      <img src="/images/slider/18.jpg" data-caption="#atmosferastav" alt="#">
+    </div>
+    <!-- END SLIDER -->
+    <!-- ADAPTIVE BLOCKS -->
+    <div class="masonry">
+        <?php if (isset($this->message) && !empty($this->message)): ?>
+            <p><?php echo $this->message; ?></p>
+        <?php endif; ?>
+        <?php
+            foreach ($this->articles as $article):
+        ?>
+            <div class="item">
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($article->getPreview( )); ?>" height="596" width="1280" alt="some attribute">
+                <h2><?php echo $article->getTitle( ); ?></h2><br>
+                <div class="textOfArticle">
+                    <div class="blockHeight">
+                    <span>
+                    <?php
+                        echo $article->getContent( );
+                    ?>
+                    </span>
+                    </div>
+                </div>
+                <div class="linkClick" href="#" onclick="linkClick(this)" show="0">Далее</div>
+            </div>
+        <?php
+           endforeach;
+        ?>
+    </div>
+    <!-- END ADAPTIVE BLOCKS -->
